@@ -1,4 +1,4 @@
-package com.example.hw1;
+package com.example.common;
 
 import android.os.Bundle;
 
@@ -9,7 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.hw1.databinding.FragmentMainBinding;
+import com.example.common.databinding.FragmentMainBinding;
+
 
 public class HomeFragment extends Fragment {
 

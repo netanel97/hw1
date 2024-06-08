@@ -20,5 +20,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "HW1"
-include(":app")
- 
+include(":movies")
+include(":common")

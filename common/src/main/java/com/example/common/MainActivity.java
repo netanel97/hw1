@@ -1,4 +1,4 @@
-package com.example.hw1;
+package com.example.common;
 
 import android.os.Bundle;
 
@@ -7,14 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
-    private DataManager dataManager;
-    //    private HomeFragment homeFragment;
-    private HomeRecyclerViewAdapter mAdapter;
-    private RecyclerView resultRV;
-
+    protected DataManager dataManager;
+    private HomeFragment homeFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,14 +21,12 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        this.dataManager = new DataManager();
-//        resultRV =
-//        resultRV = R.id.homeFragment_LST_textList; // Connect between xml to Recyclerview
+//        this.dataManager = new DataManager();
 
-//        homeFragment = new HomeFragment();
-//        getSupportFragmentManager().beginTransaction()
-//                .add(R.id.mainFragment,homeFragment)
-//                .commit();
+        homeFragment = new HomeFragment();
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.mainFragment,homeFragment)
+                .commit();
 
 
     }

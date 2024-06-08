@@ -1,4 +1,4 @@
-package com.example.hw1;
+package com.example.common;
 
 public class HomeRecyclerViewAdapter {
 }

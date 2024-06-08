@@ -5,9 +5,7 @@ plugins {
 android {
     namespace = "com.example.hw1"
     compileSdk = 34
-    buildFeatures {
-        viewBinding = true
-    }
+
     defaultConfig {
         applicationId = "com.example.hw1"
         minSdk = 26
@@ -36,6 +34,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(project(":common"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
