@@ -3,12 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.common.HomeFragment">
-
-    <androidx.recyclerview.widget.RecyclerView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/homeFragment_LST_textList"
-        tools:listitem="@layout/item_card"/>
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/homeFragment_LST_textList"
+            tools:listitem="@layout/item_card"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add"
+                style="@style/Widget.Material3.Button.Icon"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                app:icon="@drawable/ic_add"
+                android:insetBottom="0dp"
+                android:insetTop="0dp"
+                app:iconSize="24dp"
+                app:iconGravity="textEnd"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/cardview_dark_background"
+                />
+
+
+
+    </LinearLayout>
+
 
 </RelativeLayout>
