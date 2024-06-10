@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "HW1"
 include(":movies")
 include(":common")
+include(":songs")

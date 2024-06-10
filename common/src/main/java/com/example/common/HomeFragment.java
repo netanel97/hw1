@@ -1,6 +1,8 @@
 package com.example.common;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.common.databinding.FragmentMainBinding;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -26,12 +29,16 @@ public class HomeFragment extends Fragment {
     private RecyclerView resultRV;
     private ArrayList<Note> notesList;
 
+    private SharedPreferences sp;
+
+    private static final String PREFS_NAME = "ReHubPrefs";
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         notesList = new ArrayList<>(); // Initialize notes list
+        sp = getContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
         binding = FragmentMainBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
@@ -50,6 +57,16 @@ public class HomeFragment extends Fragment {
         });
         return view;
     }
+    private void savePreferences() {
+        // Serialize the ArrayList of Notes into a JSON string
+        Gson gson = new Gson();
+        String notesJson = gson.toJson(notesList);
+
+        // Save the JSON string to SharedPreferences
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("notes", notesJson);
+        editor.apply();
+    }
 
     private void showAddNoteDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -64,6 +81,8 @@ public class HomeFragment extends Fragment {
             if (!note.isEmpty()) {
                 notesList.add(newNote);
                 mAdapter.updateList(notesList);
+                savePreferences();
+
             } else {
                 Toast.makeText(getContext(), "Note cannot be empty", Toast.LENGTH_SHORT).show();
             }

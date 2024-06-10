@@ -5,9 +5,9 @@ import androidx.activity.EdgeToEdge;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import com.example.common.MainActivity;
+import com.example.common.PanelBaseActivity;
 
-public class MoviesActivity extends MainActivity {
+public class MoviesActivity extends PanelBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
