@@ -35,6 +35,7 @@ public class HomeFragment extends Fragment {
     private static final String PREFS_NAME = "TodoListPrefs";
 
     private DataManager dataManager;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,14 +51,19 @@ public class HomeFragment extends Fragment {
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         resultRV.setAdapter(mAdapter);
         resultRV.setLayoutManager(linearLayoutManager);
-        binding.btnAdd.setOnClickListener(new View.OnClickListener() {
+        binding.btnAdd.setOnClickListener(view1 -> showAddNoteDialog());
+        mAdapter.setItemSetOnListener(new HomeRecyclerViewAdapter.ItemSetOnListener() {
             @Override
-            public void onClick(View view) {
-                showAddNoteDialog();
+            public void isDone(int pos) {
+                dataManager.getAllNotes().get(pos).setDone(!dataManager.getAllNotes().get(pos).isDone());
+                mAdapter.updateList(dataManager.getAllNotes());
+                savePreferences();
+
             }
         });
         return view;
     }
+
     private void loadPreferences() {
         String notesJson = sp.getString(PREFS_NAME, null);
 
@@ -73,6 +79,7 @@ public class HomeFragment extends Fragment {
             dataManager.setAllNotes(allNotes);
         }
     }
+
     private void savePreferences() {
         // Serialize the ArrayList of Notes into a JSON string
         Gson gson = new Gson();
@@ -93,7 +100,7 @@ public class HomeFragment extends Fragment {
 
         builder.setPositiveButton("Add", (dialog, which) -> {
             String note = input.getText().toString();
-            Note newNote = new Note(note,false);
+            Note newNote = new Note(note, false);
             if (!note.isEmpty()) {
                 dataManager.getAllNotes().add(newNote);
                 mAdapter.updateList(dataManager.getAllNotes());
